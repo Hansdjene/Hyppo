@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "418163568366",
+    "project_id": "hyppobase",
+    "storage_bucket": "hyppobase.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:418163568366:android:b0621e0fa0722a528a0dff",
+        "android_client_info": {
+          "package_name": "com.hyppo.app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDTEEnGPpWg-rVA0bfbW7iqwTZ4UAL2GmY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

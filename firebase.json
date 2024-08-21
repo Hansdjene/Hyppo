@@ -1,0 +1,1 @@
+{"flutter":{"platforms":{"android":{"default":{"projectId":"hyppobase","appId":"1:418163568366:android:b0621e0fa0722a528a0dff","fileOutput":"android/app/google-services.json"}},"dart":{"lib/firebase_options.dart":{"projectId":"hyppobase","configurations":{"android":"1:418163568366:android:b0621e0fa0722a528a0dff","ios":"1:418163568366:ios:ba0d3ad2bca6dd898a0dff"}}}}}}
