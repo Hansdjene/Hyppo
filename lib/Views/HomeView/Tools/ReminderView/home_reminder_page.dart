@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:hyppo/Components/color.dart';
 import 'package:hyppo/Views/HomeView/Tools/ReminderView/new_entry_page.dart';
 
 class HomeReminderPage extends StatefulWidget {
