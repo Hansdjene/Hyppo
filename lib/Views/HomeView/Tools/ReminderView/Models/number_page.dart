@@ -9,9 +9,22 @@ class NumberPage extends StatefulWidget {
 }
 
 class _NumberPageState extends State<NumberPage> {
-  var hour = 0;
-  var minute = 0;
+  late TimeOfDay _time;
+  late int hour;
+  late int minute;
   var timeFormat = "AM";
+
+  @override
+  void initState() {
+    super.initState();
+    // Récupérer l'heure actuelle
+    _time = TimeOfDay.now();
+    hour = _time.hourOfPeriod; // Utiliser hourOfPeriod pour obtenir le format 12h
+    minute = _time.minute;
+
+    // Déterminer si c'est AM ou PM
+    timeFormat = _time.period == DayPeriod.am ? "AM" : "PM";
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -22,31 +35,29 @@ class _NumberPageState extends State<NumberPage> {
     final borderColor = theme.dividerColor;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 10),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Text(
-            "Pick Your Time! ${hour.toString().padLeft(2, '0')}:${minute.toString().padLeft(2, '0')} $timeFormat",
+            "Starting Time ${hour.toString().padLeft(2, '0')}:${minute.toString().padLeft(2, '0')} $timeFormat",
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              fontSize: 23 * 0.7, // Réduction de la taille de la police
+              fontSize: 23 * 0.7,
               color: textColor,
             ),
           ),
           const SizedBox(
-            height: 10 * 0.7, // Réduction de la hauteur de l'espace
+            height: 10 * 0.7,
           ),
           Container(
             padding: EdgeInsets.symmetric(
               horizontal: 20 * 0.7,
-              vertical: 10 * 0.7, // Réduction du padding
+              vertical: 10 * 0.7,
             ),
             decoration: BoxDecoration(
-              color: theme.colorScheme
-                  .surface, // Utiliser la couleur de surface du thème
-              borderRadius:
-                  BorderRadius.circular(10 * 0.7), // Réduction du border radius
+              color: theme.colorScheme.surface,
+              borderRadius: BorderRadius.circular(10 * 0.7),
             ),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -57,20 +68,21 @@ class _NumberPageState extends State<NumberPage> {
                   value: hour,
                   zeroPad: true,
                   infiniteLoop: true,
-                  itemWidth: 80 * 0.7, // Réduction de la largeur de l'item
-                  itemHeight: 60 * 0.7, // Réduction de la hauteur de l'item
+                  itemWidth: 80 * 0.7,
+                  itemHeight: 60 * 0.7,
                   onChanged: (value) {
                     setState(() {
                       hour = value;
+                      _time = TimeOfDay(hour: hour, minute: minute);
                     });
                   },
                   textStyle: TextStyle(
                     color: textColor,
-                    fontSize: 20 * 0.7, // Réduction de la taille de la police
+                    fontSize: 20 * 0.7,
                   ),
                   selectedTextStyle: TextStyle(
                     color: selectedTextColor,
-                    fontSize: 30 * 0.7, // Réduction de la taille de la police
+                    fontSize: 30 * 0.7,
                   ),
                   decoration: BoxDecoration(
                     border: Border(
@@ -85,20 +97,21 @@ class _NumberPageState extends State<NumberPage> {
                   value: minute,
                   zeroPad: true,
                   infiniteLoop: true,
-                  itemWidth: 80 * 0.7, // Réduction de la largeur de l'item
-                  itemHeight: 60 * 0.7, // Réduction de la hauteur de l'item
+                  itemWidth: 80 * 0.7,
+                  itemHeight: 60 * 0.7,
                   onChanged: (value) {
                     setState(() {
                       minute = value;
+                      _time = TimeOfDay(hour: hour, minute: minute);
                     });
                   },
                   textStyle: TextStyle(
                     color: textColor,
-                    fontSize: 20 * 0.7, // Réduction de la taille de la police
+                    fontSize: 20 * 0.7,
                   ),
                   selectedTextStyle: TextStyle(
                     color: selectedTextColor,
-                    fontSize: 30 * 0.7, // Réduction de la taille de la police
+                    fontSize: 30 * 0.7,
                   ),
                   decoration: BoxDecoration(
                     border: Border(
@@ -118,7 +131,7 @@ class _NumberPageState extends State<NumberPage> {
                       child: Container(
                         padding: EdgeInsets.symmetric(
                           horizontal: 20 * 0.7,
-                          vertical: 10 * 0.7, // Réduction du padding
+                          vertical: 10 * 0.7,
                         ),
                         decoration: BoxDecoration(
                           color: timeFormat == "AM"
@@ -135,14 +148,13 @@ class _NumberPageState extends State<NumberPage> {
                           "AM",
                           style: TextStyle(
                             color: selectedTextColor,
-                            fontSize:
-                                25 * 0.7, // Réduction de la taille de la police
+                            fontSize: 25 * 0.7,
                           ),
                         ),
                       ),
                     ),
                     SizedBox(
-                      height: 15 * 0.7, // Réduction de la hauteur de l'espace
+                      height: 15 * 0.7,
                     ),
                     GestureDetector(
                       onTap: () {
@@ -153,7 +165,7 @@ class _NumberPageState extends State<NumberPage> {
                       child: Container(
                         padding: EdgeInsets.symmetric(
                           horizontal: 20 * 0.7,
-                          vertical: 10 * 0.7, // Réduction du padding
+                          vertical: 10 * 0.7,
                         ),
                         decoration: BoxDecoration(
                           color: timeFormat == "PM"
@@ -170,8 +182,7 @@ class _NumberPageState extends State<NumberPage> {
                           "PM",
                           style: TextStyle(
                             color: selectedTextColor,
-                            fontSize:
-                                25 * 0.7, // Réduction de la taille de la police
+                            fontSize: 25 * 0.7,
                           ),
                         ),
                       ),

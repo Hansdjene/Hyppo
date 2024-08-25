@@ -2,5 +2,5 @@ enum MedicineType{
   ointment,
   medicine,
   syringe,
-  capsules
+  capsules, none
 }
